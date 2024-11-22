@@ -1,23 +1,10 @@
 pluginManagement {
     repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
+        google() // Репозиторий Google для Android зависимостей
+        mavenCentral() // Центральный Maven репозиторий
+        gradlePluginPortal() // Портал плагинов Gradle
     }
 }
 
-rootProject.name = "GameTop"
-include(":app")
+rootProject.name = "GameTop" // Имя корневого проекта
+include(":app") // Подключение модуля "app"
