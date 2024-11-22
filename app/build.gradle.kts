@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.library)
+    id("com.android.library")
     alias(libs.plugins.jetbrains.kotlin.android)
     id("maven-publish")
 }
@@ -10,22 +10,8 @@ android {
 
     defaultConfig {
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -49,19 +35,24 @@ android {
 publishing {
     publications {
         create<MavenPublication>("release") {
-            from(components["release"]) // Публикуем release-сборку
-            groupId = "com.github.test" // Укажите groupId
-            artifactId = "test" // Это имя вашего репозитория на GitHub. Оно должно совпадать с названием проекта.
-            version = "1.0.0" // Укажите версию
+            groupId = "com.github.test" // Замените на ваш GitHub username
+            artifactId = "test" // Название вашего репозитория
+            version = "1.0.1" // Версия, совпадающая с тэгом
+
+            // Явно указываем артефакт .aar
+            artifact(layout.buildDirectory.file("outputs/aar/app-release.aar")) {
+                builtBy(tasks.named("assemble")) // Указываем зависимость от задачи сборки
+            }
         }
     }
 
     repositories {
         maven {
-            url = uri("https://jitpack.io") // Для JitPack или другой репозиторий
+            url = uri("https://jitpack.io") // Репозиторий JitPack
         }
     }
 }
+
 
 
 dependencies {
