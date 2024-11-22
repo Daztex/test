@@ -50,8 +50,8 @@ publishing {
     publications {
         create<MavenPublication>("release") {
             from(components["release"]) // Публикуем release-сборку
-            groupId = "com.maven.test" // Укажите groupId
-            artifactId = "maven-test-library" // Укажите artifactId
+            groupId = "com.github.test" // Укажите groupId
+            artifactId = "test" // Это имя вашего репозитория на GitHub. Оно должно совпадать с названием проекта.
             version = "1.0.0" // Укажите версию
         }
     }
