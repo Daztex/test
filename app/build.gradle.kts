@@ -37,7 +37,7 @@ publishing {
         create<MavenPublication>("release") {
             groupId = "com.github.test" // Замените на ваш GitHub username
             artifactId = "test" // Название вашего репозитория
-            version = "1.0.2" // Версия, совпадающая с тэгом
+            version = "1.0.3" // Версия, совпадающая с тэгом
 
             // Явно указываем артефакт .aar
             artifact(layout.buildDirectory.file("outputs/aar/app-release.aar")) {
